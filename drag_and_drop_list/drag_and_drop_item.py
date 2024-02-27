@@ -5,6 +5,7 @@ from flet import (
     DragTarget,
     Container,
     colors,
+    Column,
 )
 
 # from flet_core.control import Control
@@ -16,11 +17,13 @@ from .event import Event
 class DragAndDropItem(Container):
     initial_bgcolor = None
     on_drop = Event()
+    drop_place_holder = None
 
     def init(self):
+        self.drop_place_holder = Container(width=self.content.width, height=20, bgcolor=colors.CYAN_900, visible=False)
         self.content = Draggable(
             content=DragTarget(
-                content=self.content,
+                content=Column(controls=[self.drop_place_holder, self.content], spacing=0),
                 on_accept=self._on_accept,
                 on_leave=self._on_leave,
                 on_will_accept=self._on_will_accept,
@@ -38,16 +41,19 @@ class DragAndDropItem(Container):
         self.on_drop(source, target)
         print('on_accept', e)
         self.bgcolor = self.initial_bgcolor
+        self.drop_place_holder.visible = False
         self.page.update()
 
     def _on_will_accept(self, e):
         print('on_will_accept', e)
         self.bgcolor = colors.RED
+        self.drop_place_holder.visible = True
         self.page.update()
 
     def _on_leave(self, e):
         print('on_leave', e)
         self.bgcolor = self.initial_bgcolor
+        self.drop_place_holder.visible = False
         self.page.update()
 
 
