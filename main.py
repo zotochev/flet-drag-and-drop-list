@@ -5,10 +5,11 @@ from drag_and_drop_list import DragAndDropListView
 
 def main(page: Page):
     page.window_width = 200
+    page.window_height = 200
 
     ft_list = DragAndDropListView(
         controls=[
-            Text(f"Line {i}") for i in range(100)
+            Text(f"Line {i}") for i in range(50)
         ],
         auto_scroll=True,
     )

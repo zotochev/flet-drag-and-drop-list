@@ -76,7 +76,7 @@ class DragAndDropListView(ListView):
         for i, c in enumerate(controls):
             c = DragAndDropItem(
                 content=c,
-                bgcolor=colors.AMBER_200 if i % 2 else colors.GREEN_200,
+                bgcolor=colors.TRANSPARENT,  # colors.AMBER_200 if i % 2 else colors.GREEN_200,
                 height=c.width,
                 width=c.height,
             ).init()
