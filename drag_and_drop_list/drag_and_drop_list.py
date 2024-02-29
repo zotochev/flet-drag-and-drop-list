@@ -128,7 +128,7 @@ class DragAndDropListView(ListView):
 
         source = self.__get_item(source)
         target = self.__get_item(target)
-        if source is target:
+        if source is target or source is None or target is None:
             return
 
         self.controls.remove(source)
