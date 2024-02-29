@@ -1,2 +1,2 @@
 # flet-drag-and-drop-list
-![example](./assets/out.png)
+![example](./assets/out.gif)
