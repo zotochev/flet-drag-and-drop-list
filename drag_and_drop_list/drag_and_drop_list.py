@@ -77,8 +77,8 @@ class DragAndDropListView(ListView):
             c = DragAndDropItem(
                 content=c,
                 bgcolor=colors.TRANSPARENT,  # colors.AMBER_200 if i % 2 else colors.GREEN_200,
-                height=c.width,
-                width=c.height,
+                height=getattr(c, 'width', None),
+                width=getattr(c, 'height', None),
             ).init()
             c.on_drop.add(self._on_drop_item)
             controls_updated.append(c)
