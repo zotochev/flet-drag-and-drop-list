@@ -141,3 +141,13 @@ class DragAndDropListView(ListView):
         for litem in self.controls:
             if litem.content is ritem:
                 return litem
+
+    def add_item(self, item: Control):
+        c = DragAndDropItem(
+            content=item,
+            bgcolor=colors.TRANSPARENT,  # colors.AMBER_200 if i % 2 else colors.GREEN_200,
+            height=getattr(item, 'width', None),
+            width=getattr(item, 'height', None),
+        ).init()
+        c.on_drop.add(self._on_drop_item)
+        self.controls.append(c)
